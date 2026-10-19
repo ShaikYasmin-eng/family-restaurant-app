@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Feast Restaurant</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="hero">
+    <nav>
+        <h2>🍽️ Family Feast</h2>
+        <a href="#menu">Menu</a>
+        <a href="#cart">My Cart</a>
+        <a href="#booking">Book a Table</a>
+    </nav>
+
+    <div class="hero-content">
+        <p class="tagline">GOOD FOOD · HAPPY FAMILIES</p>
+        <h1>Welcome to Family Feast</h1>
+        <p>Fresh food, warm hospitality, beautiful memories.</p>
+        <a class="btn" href="#menu">Explore Our Menu</a>
+    </div>
+</header>
+
+<main class="container">
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <section id="menu">
+        <h2>Our Delicious Menu</h2>
+        <p class="subtitle">Made with love, served with happiness.</p>
+
+        <div class="food-grid">
+            {% for item in menu %}
+            <article class="food-card">
+                <div class="food-emoji">
+                    {% if item.category == "Desserts" %}🍨
+                    {% elif item.category == "Breakfast" %}🥞
+                    {% elif item.category == "Starters" %}🍟
+                    {% elif "Chicken" in item.name %}🍗
+                    {% elif "Paneer" in item.name %}🧀
+                    {% else %}🍛{% endif %}
+                </div>
+
+                <p class="category">{{ item.category }}</p>
+                <h3>{{ item.name }}</h3>
+                <p class="price">₹{{ item.price }}</p>
+
+                <form action="{{ url_for('add_to_cart', item_id=item.id) }}"
+                      method="POST">
+                    <button type="submit">Add to Cart +</button>
+                </form>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="cart" class="panel">
+        <h2>🛒 Your Shopping Cart</h2>
+
+        {% if cart_items %}
+            {% for item in cart_items %}
+            <div class="cart-row">
+                <span>{{ item.name }} × {{ item.quantity }}</span>
+                <span>₹{{ item.subtotal }}</span>
+
+                <form action="{{ url_for('remove_from_cart', item_id=item.id) }}"
+                      method="POST">
+                    <button class="remove-btn" type="submit">− 1</button>
+                </form>
+            </div>
+            {% endfor %}
+
+            <h3 class="total">Total: ₹{{ total }}</h3>
+
+            <form action="{{ url_for('checkout') }}" method="POST"
+                  class="form-grid">
+                <input name="customer" placeholder="Your full name"
+                       maxlength="100" required>
+                <input name="phone" placeholder="10-digit phone number"
+                       inputmode="numeric" pattern="[0-9]{10}" required>
+                <button type="submit">Place Order</button>
+            </form>
+        {% else %}
+            <p>Your cart is empty. Add something delicious!</p>
+        {% endif %}
+    </section>
+
+    <section id="booking" class="panel">
+        <h2>📅 Book a Family Table</h2>
+        <p>Plan your next meal with us.</p>
+
+        <form action="{{ url_for('book_table') }}" method="POST"
+              class="form-grid">
+            <input name="customer" placeholder="Your full name"
+                   maxlength="100" required>
+            <input name="phone" placeholder="10-digit phone number"
+                   inputmode="numeric" pattern="[0-9]{10}" required>
+            <label>
+                Booking date
+                <input type="date" name="date" required>
+            </label>
+            <label>
+                Booking time
+                <input type="time" name="time" required>
+            </label>
+            <label>
+                Number of guests
+                <input type="number" name="guests" min="1" max="20"
+                       value="2" required>
+            </label>
+            <button type="submit">Request a Table</button>
+        </form>
+        <p class="note">Demo project: bookings are saved but are not
+            automatically confirmed with restaurant staff.</p>
+    </section>
+
+</main>
+
+<footer>
+    <h3>Family Feast Restaurant</h3>
+    <p>Good food brings families together ❤️</p>
+    <p>© 2026 Family Feast. Student project.</p>
+</footer>
+
+</body>
+</html>

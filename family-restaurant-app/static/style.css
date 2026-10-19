@@ -1,0 +1,235 @@
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fffaf4;
+    color: #30251f;
+}
+
+.hero {
+    min-height: 380px;
+    color: white;
+    background:
+        linear-gradient(90deg, rgba(45, 20, 10, 0.92),
+        rgba(45, 20, 10, 0.45)),
+        url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 15px;
+}
+
+nav h2 {
+    margin: 0;
+    margin-right: auto;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffc078;
+}
+
+.hero-content {
+    padding: 55px 8% 75px;
+}
+
+.hero-content h1 {
+    font-size: clamp(32px, 5vw, 54px);
+    margin: 12px 0;
+}
+
+.tagline {
+    color: #ffc078;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 13px 22px;
+    background: #e66b24;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+section {
+    padding: 25px 0;
+}
+
+section h2 {
+    font-size: 28px;
+}
+
+.subtitle {
+    color: #77675e;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.food-card {
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px #00000012;
+    transition: transform 0.2s;
+}
+
+.food-card:hover {
+    transform: translateY(-4px);
+}
+
+.food-emoji {
+    font-size: 55px;
+    background: #fff0df;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.category {
+    color: #a85b2b;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.price {
+    font-size: 21px;
+    font-weight: bold;
+    color: #c64e1c;
+}
+
+button {
+    background: #b7471c;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #8d3213;
+}
+
+.food-card button {
+    width: 100%;
+}
+
+.panel {
+    background: white;
+    padding: 25px;
+    margin: 35px 0;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px #0000000c;
+}
+
+.cart-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.remove-btn {
+    padding: 6px 12px;
+    background: #777;
+}
+
+.total {
+    text-align: right;
+    color: #b7471c;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    margin-top: 6px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.form-grid label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.message {
+    background: #fff0d8;
+    border-left: 4px solid #e66b24;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.note {
+    color: #77675e;
+    font-size: 13px;
+}
+
+footer {
+    text-align: center;
+    background: #302019;
+    color: white;
+    padding: 28px;
+}
+
+@media (max-width: 600px) {
+    nav {
+        justify-content: flex-start;
+    }
+
+    .hero-content {
+        padding-top: 35px;
+    }
+
+    .cart-row {
+        flex-wrap: wrap;
+    }
+
+    .panel {
+        padding: 18px;
+    }
+}
